@@ -5,24 +5,7 @@ DirectoryIndex index.php index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-
-  # ── Redirect permanent des anciennes URLs .html → .php ──────────────
-  # (Sans condition !-f pour forcer même si le fichier .html existe encore)
-  RewriteRule ^(index|bio|contact|press|serie)\.html$    $1.php    [R=301,L]
-  RewriteRule ^en/(index|bio|contact|press|serie)\.html$ en/$1.php [R=301,L]
-
-  # ── URLs propres sans extension (.php) ──────────────────────────────
-  # /bio        → /bio.php
-  # /en/bio     → /en/bio.php
-  RewriteCond %{REQUEST_FILENAME}      !-f
-  RewriteCond %{REQUEST_FILENAME}      !-d
-  RewriteCond %{REQUEST_FILENAME}.php  -f
-  RewriteRule ^(index|bio|contact|press|serie)$    $1.php    [L]
-
-  RewriteCond %{REQUEST_FILENAME}      !-f
-  RewriteCond %{REQUEST_FILENAME}      !-d
-  RewriteCond %{REQUEST_FILENAME}.php  -f
-  RewriteRule ^en/(index|bio|contact|press|serie)$ en/$1.php [L]
+  RewriteBase /
 </IfModule>
 
 # ── Sécurité : bloquer l'accès direct aux fichiers sensibles ──────────
