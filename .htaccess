@@ -6,6 +6,17 @@ DirectoryIndex index.php index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # ── Retire le .html visible dans l'URL ──────────────
+  # 1. Si la requête se termine par .html → redirige sans l'extension (301)
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # 2. Si le fichier .html correspondant existe → le sert en interne (transparent)
+  RewriteCond %{REQUEST_FILENAME}      !-d
+  RewriteCond %{REQUEST_FILENAME}      !-f
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
 
 # ── Sécurité : bloquer l'accès direct aux fichiers sensibles ──────────
