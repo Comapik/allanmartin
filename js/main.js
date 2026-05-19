@@ -146,14 +146,33 @@
       
       updateFadeCarousel(); // Init first slide
 
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-        updateFadeCarousel();
-      });
-      nextBtn.addEventListener('click', () => {
+      const goNext = () => {
         currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
         updateFadeCarousel();
+      };
+      const goPrev = () => {
+        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+        updateFadeCarousel();
+      };
+
+      prevBtn.addEventListener('click', goPrev);
+      nextBtn.addEventListener('click', goNext);
+
+      // Navigation clavier (←/→)
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft')  goPrev();
+        if (e.key === 'ArrowRight') goNext();
       });
+
+      // Swipe tactile
+      let touchStartX = 0;
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      carousel.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) dx < 0 ? goNext() : goPrev();
+      }, { passive: true });
     } else {
       // HOMEPAGE scroll carousel
       prevBtn.addEventListener('click', () => {
