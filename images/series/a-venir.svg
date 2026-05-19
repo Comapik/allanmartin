@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#f0efed"/>
+
+  <!-- Grain texture overlay via subtle pattern -->
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feBlend in="SourceGraphic" mode="multiply" result="blend"/>
+    <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+  </filter>
+  <rect width="800" height="600" fill="#e8e6e2" filter="url(#grain)" opacity="0.4"/>
+
+  <!-- Top rule -->
+  <line x1="80" y1="190" x2="720" y2="190" stroke="#1a1a1a" stroke-width="0.6" opacity="0.25"/>
+
+  <!-- À venir — serif italic -->
+  <text
+    x="400"
+    y="312"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-style="italic"
+    font-weight="400"
+    font-size="64"
+    letter-spacing="-1"
+    fill="#1a1a1a"
+    opacity="0.55"
+  >À venir</text>
+
+  <!-- Bottom rule -->
+  <line x1="80" y1="410" x2="720" y2="410" stroke="#1a1a1a" stroke-width="0.6" opacity="0.25"/>
+
+  <!-- Small label -->
+  <text
+    x="400"
+    y="444"
+    text-anchor="middle"
+    font-family="'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="10"
+    letter-spacing="3"
+    fill="#1a1a1a"
+    opacity="0.35"
+  >PROCHAINE SÉRIE</text>
+</svg>

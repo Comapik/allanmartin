@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <title>Contact — Allan Martin Photographe</title>
+  <meta name="description" content="Contacter Allan Martin, photographe normand. Commissions, achats de tirages signés, demandes presse et informations sur les séries." />
+  <link rel="canonical" href="https://www.allanmartin.fr/contact.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://www.allanmartin.fr/contact.html" />
+  <meta property="og:title"       content="Contact — Allan Martin Photographe" />
+  <meta property="og:description" content="Contacter Allan Martin, photographe normand. Commissions, achats de tirages signés, demandes presse." />
+  <meta property="og:image"       content="https://www.allanmartin.fr/images/Serie01-Signal-Perdu/sentinelle.webp" />
+  <meta property="og:locale"      content="fr_FR" />
+  <meta property="og:site_name"   content="Allan Martin Photographe" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:title"       content="Contact — Allan Martin Photographe" />
+  <meta name="twitter:description" content="Contacter Allan Martin, photographe normand. Commissions, achats de tirages, demandes presse." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header scrolled">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">Allan Martin</a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Séries</a></li>
+          <li><a href="bio.html">Bio</a></li>
+          <li><a href="press.html">Presse</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CONTENT ===== -->
+  <main class="page-wrapper">
+    <h1 class="page-title">Contact</h1>
+    <div class="page-body">
+      <p>
+        Pour toute demande de commission, d'achat de tirage ou d'information,
+        utilisez le formulaire ci-dessous.
+      </p>
+    </div>
+
+    <form
+      class="contact-form"
+      id="contact-form"
+      novalidate
+      action="send.php"
+      method="POST"
+    >
+      <!-- Honeypot : invisible pour les humains, rempli par les bots -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="website">Ne pas remplir</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <!-- Timing anti-bot : rempli par JS au chargement de la page -->
+      <input type="hidden" id="_time" name="_time" value="" />
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Votre nom"
+          autocomplete="name"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="votre@email.com"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Objet</label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="Commission, tirage, presse…"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Votre message…"
+          rows="6"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Envoyer</button>
+      <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Allan Martin — Tous droits réservés</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Minimal client-side form feedback (adapt to your back-end / Formspree)
+    const form     = document.getElementById('contact-form');
+    const feedback = document.getElementById('form-feedback');
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name    = form.name.value.trim();
+        const email   = form.email.value.trim();
+        const message = form.message.value.trim();
+
+        if (!name || !email || !message) {
+          feedback.style.color = '#c0392b';
+          feedback.textContent = 'Merci de remplir tous les champs obligatoires.';
+          return;
+        }
+
+        // Validate email format
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRe.test(email)) {
+          feedback.style.color = '#c0392b';
+          feedback.textContent = 'Adresse e-mail invalide.';
+          return;
+        }
+
+        // TODO: remplacer par un vrai envoi (fetch vers Formspree, etc.)
+        feedback.style.color = 'var(--color-accent)';
+        feedback.textContent = 'Message envoyé — merci, je vous répondrai prochainement.';
+        form.reset();
+      });
+    }
+  </script>
+</body>
+</html>

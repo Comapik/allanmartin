@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <title>Allan Martin — Photographe</title>
+  <meta name="description" content="Portfolio photographique d'Allan Martin, photographe normand. Séries en éditions limitées, tirages signés et numérotés." />
+  <link rel="canonical" href="https://www.allanmartin.fr/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://www.allanmartin.fr/" />
+  <meta property="og:title"       content="Allan Martin — Photographe" />
+  <meta property="og:description" content="Portfolio photographique d'Allan Martin, photographe normand. Séries en éditions limitées, tirages signés et numérotés." />
+  <meta property="og:image"       content="https://www.allanmartin.fr/images/Serie01-Signal-Perdu/sentinelle.webp" />
+  <meta property="og:locale"      content="fr_FR" />
+  <meta property="og:site_name"   content="Allan Martin Photographe" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Allan Martin — Photographe" />
+  <meta name="twitter:description" content="Portfolio photographique d'Allan Martin, photographe normand. Séries en éditions limitées, tirages signés et numérotés." />
+  <meta name="twitter:image"       content="https://www.allanmartin.fr/images/Serie01-Signal-Perdu/sentinelle.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Données structurées -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.allanmartin.fr/#person",
+        "name": "Allan Martin",
+        "jobTitle": "Photographe",
+        "url": "https://www.allanmartin.fr/",
+        "image": "https://www.allanmartin.fr/images/Serie01-Signal-Perdu/sentinelle.webp",
+        "description": "Photographe basé en Normandie, lauréat 2026 de l'aide à la première exposition Surface Sans Cible. Auteur de la série Signal Perdu.",
+        "knowsAbout": ["Photographie", "Tirages d'art", "Éditions limitées", "Photographie argentique"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.allanmartin.fr/#website",
+        "name": "Allan Martin Photographe",
+        "url": "https://www.allanmartin.fr/",
+        "description": "Portfolio photographique d'Allan Martin, photographe normand.",
+        "author": { "@id": "https://www.allanmartin.fr/#person" }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">Allan Martin</a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html" class="active">Séries</a></li>
+          <li><a href="bio.html">Bio</a></li>
+          <li><a href="press.html">Presse</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <h1 class="hero-tagline">Allan Martin<br><span style="font-size: clamp(16px, 2vw, 24px); font-family: var(--font-sans); letter-spacing: 0.05em;">Photographie sincère, dans un monde fictif.</span></h1>
+  </section>
+
+  <!-- ===== SÉRIES GRID ===== -->
+  <main class="series-grid" id="series">
+    <!-- Série 1 -->
+    <article class="series-item">
+      <a href="serie.html?slug=serie-01" class="series-link">
+        <div class="series-image-wrap">
+          <img
+            src="images/Serie01-Signal-Perdu/sentinelle.webp"
+            alt="Signal Perdu"
+            loading="lazy"
+          />
+        </div>
+        <div class="series-info">
+          <h2 class="series-title">Signal Perdu</h2>
+          <span class="series-cta">Voir la série</span>
+        </div>
+      </a>
+    </article>
+
+    <!-- Série 02 -->
+    <article class="series-item">
+      <div class="series-link" style="cursor: default;">
+        <div class="series-image-wrap">
+          <img
+            src="images/series/a-venir.svg"
+            alt="Prochaine série — À venir"
+            loading="lazy"
+          />
+        </div>
+        <div class="series-info">
+          <h2 class="series-title" style="color: var(--color-muted);">À venir</h2>
+          <span class="series-cta" style="opacity: 0; pointer-events: none;">—</span>
+        </div>
+      </div>
+    </article>
+
+
+  </main>
+
+  <div class="carousel-controls">
+    <button class="carousel-btn prev" aria-label="Précédent">&#8592;</button>
+    <span class="carousel-label">DÉCOUVRIR</span>
+    <button class="carousel-btn next" aria-label="Suivant">&#8594;</button>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Allan Martin — Tous droits réservés</p>
+  </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Fermer">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Image précédente">&#8592;</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Image suivante">&#8594;</button>
+    <figure class="lightbox-figure">
+      <img src="" alt="" id="lightbox-img" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+  <div class="lightbox-overlay" id="lightbox-overlay"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
