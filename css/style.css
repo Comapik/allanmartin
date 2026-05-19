@@ -458,12 +458,6 @@ body > .site-header {
   transition: opacity 0.35s ease-in-out;
 }
 
-/* Première image visible par défaut (fallback si JS lent) */
-.fullscreen-carousel img:first-of-type {
-  opacity: 1;
-  pointer-events: auto;
-}
-
 .fullscreen-carousel img.active {
   opacity: 1;
   pointer-events: auto;
@@ -528,26 +522,42 @@ body > .site-header {
 }
 
 .serie-nav-absolute button {
-  background: rgba(255,255,255,0.6);
+  background: none;
   border: none;
-  border-radius: 50%;
-  color: rgba(0,0,0,0.75);
+  color: rgba(0,0,0,0.35); /* Subtle dark gray */
   cursor: pointer;
   pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  transition: background var(--transition), color var(--transition);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  padding: 12px;
+  transition: color var(--transition);
 }
 
 .serie-nav-absolute button:hover {
-  background: rgba(255,255,255,0.9);
-  color: rgba(0,0,0,1);
+  color: rgba(0,0,0,0.8);
+}
+
+/* Nav mobile sous les photos (masquée sur desktop) */
+.serie-nav-mobile {
+  display: none;
+}
+.serie-nav-mobile button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.serie-nav-mobile-counter {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
 }
 
 /* =========================================================
@@ -807,6 +817,17 @@ body > .site-header {
   }
   .fullscreen-carousel img {
     height: 70vh;
+  }
+
+  /* Masque les flèches superposées, affiche la nav mobile sous les photos */
+  .serie-nav-absolute { display: none; }
+  .serie-nav-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    background: var(--color-bg);
+    border-top: 1px solid rgba(0,0,0,0.07);
   }
 
   .page-wrapper {

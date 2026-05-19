@@ -146,33 +146,28 @@
       
       updateFadeCarousel(); // Init first slide
 
-      const goNext = () => {
-        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-        updateFadeCarousel();
+      const mobileCounter = document.getElementById('slide-counter-mobile');
+      const updateCounter = () => {
+        if (mobileCounter) mobileCounter.textContent = `${currentIndex + 1} / ${total}`;
       };
-      const goPrev = () => {
+      updateCounter();
+
+      prevBtn.addEventListener('click', () => {
         currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
         updateFadeCarousel();
-      };
-
-      prevBtn.addEventListener('click', goPrev);
-      nextBtn.addEventListener('click', goNext);
-
-      // Navigation clavier (←/→)
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft')  goPrev();
-        if (e.key === 'ArrowRight') goNext();
+        updateCounter();
+      });
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+        updateFadeCarousel();
+        updateCounter();
       });
 
-      // Swipe tactile
-      let touchStartX = 0;
-      carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-      }, { passive: true });
-      carousel.addEventListener('touchend', (e) => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 40) dx < 0 ? goNext() : goPrev();
-      }, { passive: true });
+      // Boutons mobiles → délèguent aux boutons principaux
+      const prevMobile = document.getElementById('serie-prev-mobile');
+      const nextMobile = document.getElementById('serie-next-mobile');
+      if (prevMobile) prevMobile.addEventListener('click', () => prevBtn.click());
+      if (nextMobile) nextMobile.addEventListener('click', () => nextBtn.click());
     } else {
       // HOMEPAGE scroll carousel
       prevBtn.addEventListener('click', () => {
