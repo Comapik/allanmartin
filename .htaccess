@@ -12,6 +12,9 @@ DirectoryIndex index.php index.html
   RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
   RewriteRule ^ /%1 [R=301,L]
 
+  # Cas particulier : /press → press.html (conflit avec le dossier press/)
+  RewriteRule ^press$ press.html [L]
+
   # 2. Si le fichier .html correspondant existe → le sert en interne (transparent)
   RewriteCond %{REQUEST_FILENAME}      !-d
   RewriteCond %{REQUEST_FILENAME}      !-f
