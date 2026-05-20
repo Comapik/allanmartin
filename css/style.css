@@ -840,6 +840,86 @@ body > .site-header {
 }
 
 /* =========================================================
+   BIO PAGE — EXPOSITIONS
+   ========================================================= */
+.expo-section {
+  margin-top: 64px;
+  max-width: 800px;
+}
+
+.expo-section-title {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.expo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.expo-item {
+  display: grid;
+  grid-template-columns: 52px 1fr 1fr auto;
+  align-items: baseline;
+  gap: 12px 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.expo-year {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+}
+
+.expo-title {
+  font-family: var(--font-serif);
+  font-size: clamp(14px, 1.6vw, 17px);
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.expo-venue {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.expo-location {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .expo-item {
+    grid-template-columns: 44px 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .expo-venue {
+    grid-column: 2;
+  }
+
+  .expo-location {
+    grid-column: 2;
+  }
+}
+
+/* =========================================================
    PRESS PAGE
    ========================================================= */
 .press-section {
