@@ -42,6 +42,7 @@
           <li><a href="bio.html" class="active">Bio</a></li>
           <li><a href="presse.html">Presse</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="#newsletter-modal" class="js-newsletter-open">S'abonner</a></li>
         </ul>
       </nav>
     </div>
@@ -83,6 +84,62 @@
     </section>
 
   </main>
+
+  <div class="newsletter-modal" id="newsletter-modal" hidden aria-hidden="true">
+    <div class="newsletter-modal__backdrop" data-newsletter-close></div>
+    <div class="newsletter-modal__panel" role="dialog" aria-modal="true" aria-labelledby="newsletter-modal-title">
+      <button type="button" class="newsletter-modal__close" id="newsletter-modal-close" aria-label="Fermer" data-newsletter-close>&times;</button>
+      <h2 id="newsletter-modal-title">S'abonner à la newsletter</h2>
+      <p>Recevez les annonces de nouvelles séries, expositions et disponibilités de tirages.</p>
+
+      <form
+        class="inscription-form"
+        id="inscription-form"
+        method="post"
+        action="inscription.php"
+        novalidate
+      >
+        <div class="hp-field" aria-hidden="true">
+          <label for="inscription_website">Ne pas remplir</label>
+          <input
+            type="text"
+            id="inscription_website"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <input type="hidden" id="inscription_time" name="inscription_time" value="" />
+
+        <label for="inscription_email" class="sr-only">Adresse e-mail</label>
+        <input
+          type="email"
+          id="inscription_email"
+          name="email"
+          placeholder="votre@email.com"
+          autocomplete="email"
+          required
+        />
+
+        <div class="inscription-consent">
+          <input
+            type="checkbox"
+            id="inscription_consent"
+            name="consent"
+            value="1"
+            required
+          />
+          <label for="inscription_consent">
+            J'accepte de recevoir la newsletter et je peux me desinscrire a tout moment.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit">S'inscrire</button>
+        <p class="form-feedback" id="inscription-feedback" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
 
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer">

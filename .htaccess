@@ -3,6 +3,14 @@ Options -Indexes
 # Priorité à index.php sur index.html pour l'accueil
 DirectoryIndex index.php index.html
 
+# ── O2switch / Apache : variables d'environnement Brevo ─────────────
+# Remplacez les valeurs ci-dessous par vos vraies informations Brevo.
+# Exemple de clé: xkeysib-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+<IfModule mod_env.c>
+  SetEnv BREVO_API_KEY "REMPLACER_PAR_VOTRE_CLE_BREVO"
+  SetEnv BREVO_LIST_ID "REMPLACER_PAR_L_ID_NUMERIQUE_DE_LISTE"
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /

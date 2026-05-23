@@ -280,3 +280,108 @@
     feedback.className   = 'form-feedback';
   }
 })();
+
+// ── Pop-up newsletter ───────────────────────────────────
+(function initNewsletterModal() {
+  const modal = document.getElementById('newsletter-modal');
+  if (!modal) return;
+
+  const openLinks = document.querySelectorAll('.js-newsletter-open');
+  const closeEls = modal.querySelectorAll('[data-newsletter-close]');
+  const emailInput = modal.querySelector('#inscription_email');
+  let lastActiveElement = null;
+
+  const openModal = (e) => {
+    if (e) e.preventDefault();
+    lastActiveElement = document.activeElement;
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (emailInput) emailInput.focus();
+  };
+
+  const closeModal = () => {
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+      lastActiveElement.focus();
+    }
+  };
+
+  openLinks.forEach(link => link.addEventListener('click', openModal));
+  closeEls.forEach(el => el.addEventListener('click', closeModal));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) {
+      closeModal();
+    }
+  });
+})();
+
+// ── Formulaire inscription (AJAX Brevo) ─────────────────
+(function initInscriptionForm() {
+  const form = document.getElementById('inscription-form');
+  if (!form) return;
+
+  const timeField = document.getElementById('inscription_time');
+  if (timeField) timeField.value = Date.now();
+
+  const feedback = document.getElementById('inscription-feedback');
+  const submitBtn = form.querySelector('.btn-submit');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = form.elements['email'].value.trim();
+    const consent = form.elements['consent'] && form.elements['consent'].checked;
+    if (!email) {
+      showFeedback('Merci de renseigner votre adresse e-mail.', false);
+      return;
+    }
+
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email)) {
+      showFeedback('Adresse e-mail invalide.', false);
+      return;
+    }
+
+    if (!consent) {
+      showFeedback('Merci de valider la case de consentement RGPD.', false);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Inscription en cours...';
+    clearFeedback();
+
+    try {
+      const res = await fetch('inscription.php', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+
+      const data = await res.json();
+      showFeedback(data.message || 'Une erreur est survenue.', Boolean(data.success));
+      if (data.success) form.reset();
+    } catch {
+      showFeedback('Erreur reseau. Merci de reessayer dans quelques instants.', false);
+    } finally {
+      if (timeField) timeField.value = Date.now();
+      submitBtn.disabled = false;
+      submitBtn.textContent = "S'inscrire";
+    }
+  });
+
+  function showFeedback(msg, success) {
+    if (!feedback) return;
+    feedback.textContent = msg;
+    feedback.className = 'form-feedback ' + (success ? 'form-feedback--ok' : 'form-feedback--err');
+  }
+
+  function clearFeedback() {
+    if (!feedback) return;
+    feedback.textContent = '';
+    feedback.className = 'form-feedback';
+  }
+})();

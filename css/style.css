@@ -710,6 +710,119 @@ body > .site-header {
   pointer-events: none;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.newsletter-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-items: center;
+}
+
+.newsletter-modal[hidden] {
+  display: none;
+}
+
+.newsletter-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.newsletter-modal__panel {
+  position: relative;
+  width: min(640px, calc(100vw - 40px));
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 28px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.newsletter-modal__close:hover {
+  color: var(--color-text);
+}
+
+.newsletter-modal__panel h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.newsletter-modal__panel > p {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-bottom: 16px;
+}
+
+.inscription-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.inscription-form input[type="email"] {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 12px 0;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.inscription-form input[type="email"]:focus {
+  border-bottom-color: var(--color-text);
+}
+
+.inscription-consent {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.inscription-consent input[type="checkbox"] {
+  margin-top: 3px;
+}
+
+.inscription-consent label {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+.inscription-form .form-feedback {
+  grid-column: 1 / -1;
+}
+
 /* =========================================================
    FADE-IN ON SCROLL (via IntersectionObserver in main.js)
    ========================================================= */
@@ -833,6 +946,15 @@ body > .site-header {
   .page-wrapper {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .newsletter-modal__panel {
+    width: calc(100vw - 24px);
+    padding: 20px 16px 16px;
+  }
+
+  .inscription-form {
+    grid-template-columns: 1fr;
   }
 
   .lightbox-prev { left: 8px; }
