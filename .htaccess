@@ -1,4 +1,4 @@
-Options -Indexes
+Options -Indexes -MultiViews
 
 # Priorité à index.php sur index.html pour l'accueil
 DirectoryIndex index.php index.html
@@ -24,8 +24,15 @@ DirectoryIndex index.php index.html
   RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
   RewriteRule ^ / [R=301,L]
 
+  # Ancienne URL PHP de bio -> URL propre
+  RewriteCond %{THE_REQUEST} \s/+bio\.php[\s?] [NC]
+  RewriteRule ^bio\.php$ /bio [R=301,L]
+
   # Redirige l'ancienne URL /press vers /presse
   RewriteRule ^press$ /presse [R=301,L]
+
+  # Route explicite /bio -> bio.html
+  RewriteRule ^bio$ bio.html [L]
 
   # Cas particulier : /presse → presse.html (conflit avec le dossier press/)
   RewriteRule ^presse$ presse.html [L]
