@@ -129,6 +129,18 @@
     }
   };
 
+  const trackSerieImageView = (img, index) => {
+    if (!img || !window._paq) return;
+
+    window._paq.push([
+      'trackEvent',
+      'Serie',
+      'Voir photo',
+      img.alt || `Photo ${index + 1}`,
+      index + 1,
+    ]);
+  };
+
   if (prevBtn && nextBtn) {
     if (isFadeCarousel) {
       let currentIndex = 0;
@@ -138,6 +150,7 @@
           if (idx === currentIndex) {
             img.classList.add('active');
             updatePhotoMeta(img);
+            trackSerieImageView(img, idx);
           } else {
             img.classList.remove('active');
           }
