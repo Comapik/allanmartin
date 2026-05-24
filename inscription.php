@@ -167,7 +167,7 @@ $decoded = json_decode($responseBody, true);
 
 if ($httpCode >= 200 && $httpCode < 300) {
     $_SESSION['last_newsletter_send'] = time();
-    json_response(true, 'Inscription confirmee. Merci et a bientot.');
+    json_response(true, 'Inscription confirmée. Merci et à bientôt.');
 }
 
 // Cas frequent: contact deja existant sur le compte/listes.
