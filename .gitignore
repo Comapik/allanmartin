@@ -9,3 +9,5 @@ allanmartin/
 .vscode/
 *.swp
 *.swo
+
+.htaccess
