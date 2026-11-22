@@ -989,7 +989,7 @@ body > .site-header {
 
 .expo-item {
   display: grid;
-  grid-template-columns: 52px 1fr 1fr auto;
+  grid-template-columns: 52px minmax(0, 1fr) minmax(0, 1fr) 170px;
   align-items: baseline;
   gap: 12px 24px;
   padding: 18px 0;
